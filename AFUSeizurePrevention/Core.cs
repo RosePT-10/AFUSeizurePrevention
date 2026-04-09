@@ -5,6 +5,10 @@ using Il2CppView_Equipment;
 using Il2CppView_Main;
 using Il2CppCustomUIRendering_Access;
 using Il2CppQuantum;
+using Il2CppQuantum_Game;
+using Il2CppPhoton.Deterministic;
+using UnityEngine.EventSystems;
+using Il2Cpp;
 
 [assembly: MelonInfo(typeof(AFUSeizurePrevention.Core), "AFUSeizurePrevention", "1.0.0", "taldo", null)]
 [assembly: MelonGame("Videocult", "Airframe")]
@@ -44,23 +48,13 @@ namespace AFUSeizurePrevention
                 }
             }
         }
-
-
-        [HarmonyPatch(typeof(SessionRunner), "Shutdown")]
-        private class Shutdown1
-        {
-            public static void Postfix() // Shutting down runner
-            {
-                Melon<Core>.Logger.Msg("UnloadScene!");
-                CoverScreen = null;
-            }
-        }
+        
 
         internal static Camera_View Camera;
         internal static ASCIILabel CoverScreen = null;
         internal static float Darkness = 0.0f;
         internal static bool LinearFade = false;
-        const float FADE_TIME = 510.0f;
+        const float FADE_TIME = 520.0f;
         public static ASCIILabel? InitScreenCover()
         {
             var hud = GameObject.Find("Scoreboard_Scorebox(Clone)").transform;
@@ -165,14 +159,23 @@ namespace AFUSeizurePrevention
                 // Disable flare effects
                 foreach (var flare in __instance.flares)
                     flare.enabled = false;
-                
-                if (Camera.CheckOnScreen(__instance.transform.position))
+
+                if (
+                    Camera.CheckOnScreen(__instance.transform.position)
+                    &&
+                    !CustomRaycast.CheckRay
+                    (
+                        Camera.transform.position,
+                        __instance.transform.position,
+                        1 << 20 // 20 is the "Terrain" Layer
+                    )
+                ) {
                     if (__instance.fuse > 0) // About to explode!!!
                     {
                         var max = Mathf.RoundToInt(FADE_TIME);
                         var d = __instance.explodeFrames / 20f;
 
-                        Darkness = Mathf.Min(max, Darkness + d*d*d * 100.0f);
+                        Darkness = Mathf.Min(max, Darkness + d*d * 100.0f);
                         LinearFade = true;
                     }
                     else if (__instance.fuse == 0) // EXPLODED!!
@@ -181,6 +184,7 @@ namespace AFUSeizurePrevention
                         Darkness = FADE_TIME;
                         LinearFade = false;
                     }
+                }
             } 
         }
         
@@ -191,6 +195,16 @@ namespace AFUSeizurePrevention
             {
                 return false;
             } 
+        }
+
+        [HarmonyPatch(typeof(SessionRunner), "Shutdown")]
+        private class Shutdown1
+        {
+            public static void Postfix() // Shutting down runner
+            {
+                Melon<Core>.Logger.Msg("UnloadScene!");
+                CoverScreen = null;
+            }
         }
 
 
