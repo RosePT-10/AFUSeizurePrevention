@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\_AIRFRAME ULTRA\\_Mods and tools\\_RoseMods\\AFUSeizurePrevention\\AFUSeizurePrevention\\AFUSeizurePrevention.csproj": {}
+    "/home/knightragu/Repos/AFUSeizurePrevention/AFUSeizurePrevention/AFUSeizurePrevention.csproj": {}
   },
   "projects": {
-    "D:\\_AIRFRAME ULTRA\\_Mods and tools\\_RoseMods\\AFUSeizurePrevention\\AFUSeizurePrevention\\AFUSeizurePrevention.csproj": {
+    "/home/knightragu/Repos/AFUSeizurePrevention/AFUSeizurePrevention/AFUSeizurePrevention.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_AIRFRAME ULTRA\\_Mods and tools\\_RoseMods\\AFUSeizurePrevention\\AFUSeizurePrevention\\AFUSeizurePrevention.csproj",
+        "projectUniqueName": "/home/knightragu/Repos/AFUSeizurePrevention/AFUSeizurePrevention/AFUSeizurePrevention.csproj",
         "projectName": "AFUSeizurePrevention",
-        "projectPath": "D:\\_AIRFRAME ULTRA\\_Mods and tools\\_RoseMods\\AFUSeizurePrevention\\AFUSeizurePrevention\\AFUSeizurePrevention.csproj",
-        "packagesPath": "C:\\Users\\taldo\\.nuget\\packages\\",
-        "outputPath": "D:\\_AIRFRAME ULTRA\\_Mods and tools\\_RoseMods\\AFUSeizurePrevention\\AFUSeizurePrevention\\obj\\",
+        "projectPath": "/home/knightragu/Repos/AFUSeizurePrevention/AFUSeizurePrevention/AFUSeizurePrevention.csproj",
+        "packagesPath": "/home/knightragu/.nuget/packages/",
+        "outputPath": "/home/knightragu/Repos/AFUSeizurePrevention/AFUSeizurePrevention/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\taldo\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/knightragu/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -32,13 +32,7 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "true",
-          "auditLevel": "low",
-          "auditMode": "direct"
-        },
-        "SdkAnalysisLevel": "10.0.200"
+        }
       },
       "frameworks": {
         "net6.0": {
@@ -58,14 +52,6 @@
             {
               "name": "Microsoft.AspNetCore.App.Ref",
               "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.NETCore.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
-            },
-            {
-              "name": "Microsoft.WindowsDesktop.App.Ref",
-              "version": "[6.0.36, 6.0.36]"
             }
           ],
           "frameworkReferences": {
@@ -73,7 +59,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/8.0.125/RuntimeIdentifierGraph.json"
         }
       }
     }
