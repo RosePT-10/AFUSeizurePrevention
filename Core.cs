@@ -222,6 +222,17 @@ namespace AFUSeizurePrevention
             } 
         }
         
+        [HarmonyPatch(typeof(DamageImageEffects), "Damage", [typeof(EventDamageApplied)])]
+        private class HealthFlashRemoval
+        {
+            public static void Postfix(DamageImageEffects __instance)
+            {
+                if (!Melon<Core>.Instance.IsScreenEffect.Value) return;
+                Melon<Core>.Logger.Msg("detected Damage");
+                //__instance.ResetAllEffects();
+            } 
+        }
+
         [HarmonyPatch(typeof(SessionRunner), "Shutdown")]
         private class Shutdown1
         {
