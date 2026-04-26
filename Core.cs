@@ -223,13 +223,12 @@ namespace AFUSeizurePrevention
         }
         
         [HarmonyPatch(typeof(DamageImageEffects), "Damage", [typeof(EventDamageApplied)])]
-        private class HealthFlashRemoval
+        private class BuggedHealthPulseRemoval
         {
-            public static void Postfix(DamageImageEffects __instance)
+            public static bool Prefix(DamageImageEffects __instance)
             {
-                if (!Melon<Core>.Instance.IsScreenEffect.Value) return;
-                Melon<Core>.Logger.Msg("detected Damage");
-                //__instance.ResetAllEffects();
+                if (!Melon<Core>.Instance.IsScreenEffect.Value) return true;
+                return false;
             } 
         }
 
