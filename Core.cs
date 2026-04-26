@@ -220,6 +220,16 @@ namespace AFUSeizurePrevention
                 __instance.ResetAllEffects();
             } 
         }
+
+        [HarmonyPatch(typeof(DamageImageEffects), "Damage", [typeof(EventDamageApplied)])]
+        private class BuggedHealthPulseRemoval
+        {
+            public static bool Prefix(DamageImageEffects __instance)
+            {
+                if (!Melon<Core>.Instance.IsScreenEffect.Value) return true;
+                return false;
+            } 
+        }
         
         [HarmonyPatch(typeof(SessionRunner), "Shutdown")]
         private class Shutdown1
