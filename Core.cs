@@ -97,9 +97,9 @@ namespace AFUSeizurePrevention
                 obj.transform.SetParent(hud.parent.parent.parent);
                 
                 // Position text to cover the entire screen
-                obj.transform.localPosition = new Vector3(-1042.966f, 39.8648f, 0f);
+                obj.transform.localPosition = new Vector3(1000000.0f, 0.0f, 0.0f);
                 obj.transform.localEulerAngles = new Vector3(0f, 0f, 0f);
-                obj.transform.localScale = new Vector3(200f, 100f, 1f);
+                obj.transform.localScale = new Vector3(10000f, 10000f, 1f);
 
                 var newText = obj.GetComponent<ASCIILabel>();
 
