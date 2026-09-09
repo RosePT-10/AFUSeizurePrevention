@@ -1,2 +1,2 @@
 # AFUSeizurePrevention
-A mod which alters the lighting effect of the Riot Stick, EMP Grenades, and Flashbangs to prevent seizures.
+Removes lighting effect of EMP's and Riot stick, makes flashbangs black instead of white, and removes the low health red pulse, all to prevent seizures
