@@ -10,6 +10,7 @@ using Il2CppPhoton.Deterministic;
 using UnityEngine.EventSystems;
 using Il2Cpp;
 using Il2CppUI_LEGACY_PlayerHUD;
+using Il2CppView_Effects;
 
 [assembly: MelonInfo(typeof(AFUSeizurePrevention.Core), "AFUSeizurePrevention", "1.0.0", "taldo", null)]
 [assembly: MelonGame("Videocult", "Airframe")]
@@ -23,6 +24,8 @@ namespace AFUSeizurePrevention
         private MelonPreferences_Entry<bool> IsRiotStick;
         private MelonPreferences_Entry<bool> IsFlashbang;
         private MelonPreferences_Entry<bool> IsScreenEffect;
+        private MelonPreferences_Entry<bool> IsGrenade;
+        private MelonPreferences_Entry<bool> IsGun;
 
 
         [HarmonyPatch(typeof(EMPgrenade_View), "Draw", [typeof(float)])]
@@ -47,6 +50,34 @@ namespace AFUSeizurePrevention
                 if (Melon<Core>.Instance.IsRiotStick.Value == true)
                 {
                     __instance.myLight.range = 0;
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(Explosion_View), "Draw", [typeof(float)])]
+        public class GrenadeFix
+        {
+            public static void Postfix(Explosion_View __instance)
+            {
+                //Melon<Core>.Logger.Msg("detected");
+                if (Melon<Core>.Instance.IsGrenade.Value == true)
+                {
+                    try {__instance.myLight.range = 0;}
+                    catch {}
+                }
+            }
+        }
+
+        [HarmonyPatch(typeof(GunWeapon_View), "Draw", [typeof(float)])]
+        public class GunFix
+        {
+            public static void Postfix(GunWeapon_View __instance)
+            {
+                //Melon<Core>.Logger.Msg("detected");
+                if (Melon<Core>.Instance.IsGun.Value == true)
+                {
+                    try {__instance.muzzleLight.range = 0;}
+                    catch {}
                 }
             }
         }
@@ -249,6 +280,8 @@ namespace AFUSeizurePrevention
             IsRiotStick = SeizPrevCat.CreateEntry<bool>("RiotStickFlashDisabled", true);
             IsFlashbang = SeizPrevCat.CreateEntry<bool>("FlashbangsRemoved", true);
             IsScreenEffect = SeizPrevCat.CreateEntry<bool>("RemoveScreenEffects", true);
+            IsGrenade = SeizPrevCat.CreateEntry<bool>("RemoveGrenadeLightEffects", true);
+            IsGun = SeizPrevCat.CreateEntry<bool>("RemoveGunLightEffects", true);
 
             LoggerInstance.Msg("Initialized. Bye bye flashbangs!");
         }

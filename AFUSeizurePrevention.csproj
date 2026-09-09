@@ -15,7 +15,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Reference Include="lib\*.dll" Private="False" />
+		<Reference Include="..\lib_b4\*.dll" Private="False" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -28,6 +28,6 @@
 	</ItemGroup>
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="COPY &quot;$(TargetPath)&quot; &quot;D:\_AIRFRAME ULTRA\AFU Beta4 Modded Updated Multiplayer\Mods&quot;" />
+		<Exec Command="COPY &quot;$(TargetPath)&quot; &quot;D:\_AIRFRAME ULTRA\AFU Beta4 Modded Updated Multiplayer\UserData\GizmoMods&quot;" />
 	</Target>
 </Project>
